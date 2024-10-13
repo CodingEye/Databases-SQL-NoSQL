@@ -1,0 +1,120 @@
+Here’s a Markdown file formatted for GitHub that includes basic and advanced MySQL examples. You can copy and paste this into a `.md` file for your GitHub repository.
+
+```markdown
+# MySQL Examples
+
+This document provides examples of basic CRUD operations and advanced queries in MySQL.
+
+## Basic CRUD Operations
+
+### Create
+```sql
+-- Insert a single user
+INSERT INTO users (name, email) VALUES ('Jane Doe', 'jane@example.com');
+
+-- Insert multiple users
+INSERT INTO users (name, email) VALUES 
+('Alice Smith', 'alice@example.com'),
+('Bob Johnson', 'bob@example.com');
+```
+
+### Read
+```sql
+-- Retrieve all users
+SELECT * FROM users;
+
+-- Retrieve specific columns
+SELECT name, email FROM users;
+
+-- Filter users by multiple conditions
+SELECT * FROM users WHERE email LIKE '%@example.com' AND name LIKE 'John%';
+```
+
+### Update
+```sql
+-- Update name for a specific user
+UPDATE users SET name = 'Jane Smith' WHERE email = 'jane@example.com';
+
+-- Update multiple fields for a user
+UPDATE users SET name = 'John Doe', email = 'john.doe@example.com' WHERE id = 1;
+```
+
+### Delete
+```sql
+-- Delete a user by email
+DELETE FROM users WHERE email = 'john@example.com';
+
+-- Delete multiple users with a condition
+DELETE FROM users WHERE created_at < NOW() - INTERVAL 30 DAY;
+```
+
+## Advanced Queries
+
+### Aggregation Example
+```sql
+-- Count employees in each department
+SELECT department, COUNT(*) AS employee_count
+FROM employees
+GROUP BY department
+ORDER BY employee_count DESC;
+
+-- Average salary by department
+SELECT department, AVG(salary) AS average_salary
+FROM employees
+GROUP BY department
+HAVING AVG(salary) > 50000;  -- Only show departments with average salary above 50,000
+```
+
+### Indexing Example
+```sql
+-- Create an index on the email column for faster lookups
+CREATE INDEX idx_users_email ON users (email);
+
+-- Create a multi-column index
+CREATE INDEX idx_users_name_email ON users (name, email);
+```
+
+## Advanced MySQL Features
+
+### Joins
+```sql
+-- Inner join example
+SELECT u.name, o.order_date
+FROM users u
+JOIN orders o ON u.id = o.user_id;
+
+-- Left join example
+SELECT u.name, o.order_date
+FROM users u
+LEFT JOIN orders o ON u.id = o.user_id;
+```
+
+### Subqueries
+```sql
+-- Using a subquery to find users with more than 5 orders
+SELECT name FROM users 
+WHERE id IN (SELECT user_id FROM orders GROUP BY user_id HAVING COUNT(*) > 5);
+```
+
+### Transactions
+```sql
+-- Using transactions for safe updates
+START TRANSACTION;
+
+UPDATE users SET balance = balance - 100 WHERE id = 1;
+UPDATE users SET balance = balance + 100 WHERE id = 2;
+
+COMMIT;  -- Or ROLLBACK; in case of an error
+```
+
+### Full-Text Search
+```sql
+-- Full-text search example
+SELECT * FROM articles 
+WHERE MATCH(title, content) AGAINST('MySQL tutorial' IN NATURAL LANGUAGE MODE);
+```
+
+## Conclusion
+
+This document provides a comprehensive look at both basic and advanced SQL operations specific to MySQL. Feel free to modify these examples to suit your needs for further exploration.
+```

@@ -1,0 +1,125 @@
+Here’s a Markdown file formatted for GitHub that includes both basic and advanced PostgreSQL examples. You can copy and paste this into a `.md` file for your GitHub repository.
+
+```markdown
+# PostgreSQL Examples
+
+This document provides examples of basic CRUD operations and advanced queries in PostgreSQL.
+
+## Basic CRUD Operations
+
+### Create
+```sql
+-- Insert a single user
+INSERT INTO users (name, email) VALUES ('Jane Doe', 'jane@example.com');
+
+-- Insert multiple users
+INSERT INTO users (name, email) VALUES 
+('Alice Smith', 'alice@example.com'),
+('Bob Johnson', 'bob@example.com');
+```
+
+### Read
+```sql
+-- Retrieve all users
+SELECT * FROM users;
+
+-- Retrieve specific columns
+SELECT name, email FROM users;
+
+-- Filter users by multiple conditions
+SELECT * FROM users WHERE email LIKE '%@example.com' AND name ILIKE 'John%';
+```
+
+### Update
+```sql
+-- Update name for a specific user
+UPDATE users SET name = 'Jane Smith' WHERE email = 'jane@example.com';
+
+-- Update multiple fields for a user
+UPDATE users SET name = 'John Doe', email = 'john.doe@example.com' WHERE id = 1;
+```
+
+### Delete
+```sql
+-- Delete a user by email
+DELETE FROM users WHERE email = 'john@example.com';
+
+-- Delete multiple users with a condition
+DELETE FROM users WHERE created_at < NOW() - INTERVAL '30 days';
+```
+
+## Advanced Queries
+
+### Aggregation Example
+```sql
+-- Count employees in each department
+SELECT department, COUNT(*) AS employee_count
+FROM employees
+GROUP BY department
+ORDER BY employee_count DESC;
+
+-- Average salary by department
+SELECT department, AVG(salary) AS average_salary
+FROM employees
+GROUP BY department
+HAVING AVG(salary) > 50000;  -- Only show departments with average salary above 50,000
+```
+
+### Indexing Example
+```sql
+-- Create an index on the email column for faster lookups
+CREATE INDEX idx_users_email ON users (email);
+
+-- Create a multi-column index
+CREATE INDEX idx_users_name_email ON users (name, email);
+```
+
+## Advanced PostgreSQL Features
+
+### Window Functions
+```sql
+-- Rank employees by salary within their department
+SELECT 
+    name, 
+    department, 
+    salary, 
+    RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS salary_rank
+FROM employees;
+```
+
+### Common Table Expressions (CTEs)
+```sql
+-- Using CTE to calculate total sales for each product
+WITH TotalSales AS (
+    SELECT product_id, SUM(amount) AS total_sales
+    FROM sales
+    GROUP BY product_id
+)
+SELECT p.name, ts.total_sales
+FROM products p
+JOIN TotalSales ts ON p.id = ts.product_id
+ORDER BY ts.total_sales DESC;
+```
+
+### JSON and JSONB Data Types
+```sql
+-- Inserting JSON data
+INSERT INTO users (name, email, details) 
+VALUES ('Alice', 'alice@example.com', '{"age": 30, "city": "New York"}');
+
+-- Querying JSON data
+SELECT name, details->>'city' AS city FROM users WHERE details->>'age'::int > 25;
+```
+
+### Full-Text Search
+```sql
+-- Full-text search example
+SELECT * FROM articles
+WHERE to_tsvector('english', content) @@ plainto_tsquery('english', 'PostgreSQL');
+```
+
+## Conclusion
+
+This document provides a comprehensive look at both basic and advanced SQL operations specific to PostgreSQL. For further exploration, feel free to modify these examples to suit your needs.
+```
+

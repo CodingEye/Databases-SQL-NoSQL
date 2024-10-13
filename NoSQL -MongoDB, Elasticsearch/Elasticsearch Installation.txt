@@ -1,0 +1,11 @@
+
+# ElasticSearch - Installation, Basic CRUD, and Advanced Queries
+
+## Installation
+1. Download ElasticSearch from [https://www.elastic.co/downloads/elasticsearch](https://www.elastic.co/downloads/elasticsearch).
+2. Extract the package and navigate to the bin folder.
+3. Start the server with:
+   ```
+   ./bin/elasticsearch
+   ```
+4. Verify that ElasticSearch is running by visiting `http://localhost:9200`.

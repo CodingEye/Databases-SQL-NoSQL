@@ -1,0 +1,14 @@
+
+# MongoDB - Installation, Basic CRUD, and Advanced Queries
+
+## Installation
+1. Visit [https://www.mongodb.com/try/download/community](https://www.mongodb.com/try/download/community) to download MongoDB.
+2. Follow the installation instructions for your OS.
+3. Start MongoDB using the following command:
+   ```
+   mongod
+   ```
+4. Verify the installation:
+   ```
+   mongo --version
+   ```

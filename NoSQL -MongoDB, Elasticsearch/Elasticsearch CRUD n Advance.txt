@@ -1,0 +1,53 @@
+## Basic CRUD Operations
+
+### Create
+```bash
+POST /users/_doc/1
+{
+  "name": "John Doe",
+  "email": "john@example.com"
+}
+```
+
+### Read
+```bash
+GET /users/_doc/1
+```
+
+### Update
+```bash
+POST /users/_doc/1/_update
+{
+  "doc": { "name": "John Smith" }
+}
+```
+
+### Delete
+```bash
+DELETE /users/_doc/1
+```
+
+## Advanced Queries
+
+### Aggregation Example
+```bash
+POST /sales/_search
+{
+  "size": 0,
+  "aggs": {
+    "sales_per_category": {
+      "terms": { "field": "category.keyword" }
+    }
+  }
+}
+```
+
+### Indexing Example
+```bash
+PUT /users/_doc/_mapping
+{
+  "properties": {
+    "email": { "type": "keyword" }
+  }
+}
+```

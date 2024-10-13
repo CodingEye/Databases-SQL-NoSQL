@@ -1,0 +1,36 @@
+## Basic CRUD Operations
+
+### Create
+```js
+db.users.insert({ name: 'John Doe', email: 'john@example.com' });
+```
+
+### Read
+```js
+db.users.find({ email: 'john@example.com' });
+```
+
+### Update
+```js
+db.users.update({ email: 'john@example.com' }, { $set: { name: 'John Smith' } });
+```
+
+### Delete
+```js
+db.users.remove({ email: 'john@example.com' });
+```
+
+## Advanced Queries
+
+### Aggregation Example
+```js
+db.orders.aggregate([
+  { $match: { status: 'shipped' } },
+  { $group: { _id: '$customer_id', totalAmount: { $sum: '$amount' } } }
+]);
+```
+
+### Indexing Example
+```js
+db.users.createIndex({ email: 1 });
+```
