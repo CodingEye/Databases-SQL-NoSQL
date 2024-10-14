@@ -1,0 +1,31 @@
+**Elasticsearch** is free to use under the **Elastic License 2.0 (ELv2)**, but there are some important distinctions regarding which features are free and which are paid.
+
+### 1. **Free and Open Source Features**
+Elasticsearch is built on the **open-source Apache Lucene** engine, and many of its core features are free to use. You can freely download and run Elasticsearch on your own servers with access to the following free features:
+- **Core Elasticsearch capabilities**: Full-text search, indexing, querying, and document storage.
+- **Basic analytics**: Aggregations, sorting, filtering, etc.
+- **REST APIs**: Ability to interact with Elasticsearch programmatically via REST APIs.
+- **Basic security features**: With the basic version, you get free security features like encrypted communication (TLS), role-based access control (RBAC), and authentication mechanisms for single sign-on (SSO).
+
+You can run Elasticsearch locally or in a self-managed environment without cost for these features.
+
+### 2. **Paid Features and Subscriptions**
+Elasticsearch also offers **premium features** that are part of **Elastic’s commercial offerings**. These features are not included in the free tier and require a **paid subscription**:
+- **Advanced security features**: Such as Active Directory/LDAP integrations, field-level and document-level security.
+- **Machine learning**: Features that allow for anomaly detection, forecasting, and other ML-based analytics.
+- **Alerting**: Real-time alerts based on query results (e.g., alerts when certain data patterns or thresholds are detected).
+- **Kibana plugins**: Additional Kibana features for custom visualizations, reporting, and Canvas dashboards.
+- **Snapshot and Restore**: Features for managing backups and disaster recovery.
+- **Elastic Cloud**: If you want to host Elasticsearch as a managed service on Elastic’s infrastructure, this is a paid option through **Elastic Cloud**.
+
+### 3. **Elastic Cloud (Managed Service)**
+If you don’t want to manage Elasticsearch infrastructure yourself, Elastic offers **Elastic Cloud**, a **managed Elasticsearch service** available on public clouds (like AWS, Google Cloud, or Azure). Elastic Cloud provides additional ease of use, scaling, and integrated monitoring but is a **paid service**.
+
+### 4. **AWS OpenSearch (Fork of Elasticsearch)**
+Amazon offers a fully open-source, free version called **AWS OpenSearch** (formerly an Elasticsearch fork). OpenSearch is community-driven, built on the last Apache 2.0 licensed version of Elasticsearch, and might be worth exploring if you want a free, fully open-source solution without Elastic's commercial features.
+
+### Summary:
+- **Yes**, Elasticsearch is **free** to use with many core features available under **Elastic License 2.0**.
+- Certain **premium features** require a paid subscription, especially advanced security, machine learning, and alerting capabilities.
+- **Elastic Cloud** is a paid managed service option if you prefer not to self-host.
+- For a 100% open-source solution, you can also explore **AWS OpenSearch**.
