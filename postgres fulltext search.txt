@@ -1,0 +1,49 @@
+To improve the performance of full-text search in PostgreSQL, you should create a **GIN (Generalized Inverted Index)** or **GiST (Generalized Search Tree)** index on the `search_vector` column.
+
+A GIN index is the most commonly used index for full-text search because it's optimized for fast searching of text documents.
+
+### Steps to Index `search_vector`
+
+1. **Create a GIN Index on `search_vector`:**
+   You can create a GIN index on the `search_vector` column in the `tbl_products` table as follows:
+
+   ```sql
+   CREATE INDEX idx_search_vector ON tbl_products USING GIN (search_vector);
+   ```
+
+   - **Explanation:**
+     - `USING GIN`: Specifies the type of index. GIN is particularly suited for full-text search.
+     - `search_vector`: This is the column you want to index.
+
+2. **Optional: Create a Partial Index** (if needed):
+   If you only want to index rows where a certain condition is true (e.g., only active products), you can create a partial index:
+
+   ```sql
+   CREATE INDEX idx_active_search_vector ON tbl_products USING GIN (search_vector) WHERE p_is_active = true;
+   ```
+
+   This can improve performance further by indexing only the rows that match the condition (e.g., `p_is_active = true`).
+
+3. **GiST Index Option (Optional)**:
+   You can also use a **GiST** index if you need additional flexibility, although it's generally slower than GIN for full-text search.
+
+   ```sql
+   CREATE INDEX idx_search_vector_gist ON tbl_products USING GiST (search_vector);
+   ```
+
+4. **Rebuild the Index** (Optional):
+   If you make changes to the data frequently, you might want to occasionally rebuild the index to keep it optimized:
+
+   ```sql
+   REINDEX INDEX idx_search_vector;
+   ```
+
+### Benefits of Indexing `search_vector`:
+- **Faster Searches:** Full-text searches using `to_tsquery` or `plainto_tsquery` will be faster with a GIN index.
+- **Scalability:** Indexing helps PostgreSQL efficiently handle large datasets without degrading query performance.
+  
+Make sure that once the index is created, you **ANALYZE** the table to ensure that PostgreSQL’s query planner takes advantage of it:
+
+```sql
+ANALYZE tbl_products;
+```

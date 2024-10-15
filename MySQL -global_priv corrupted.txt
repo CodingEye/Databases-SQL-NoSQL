@@ -1,0 +1,3 @@
+================================================================
+Index for table 'global_priv' is corrupt; try to repair it
+repair table mysql.global_priv;

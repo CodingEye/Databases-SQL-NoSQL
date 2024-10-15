@@ -1,0 +1,13 @@
+================================================================
+C:\xampp\phpMyAdmin\config.inc.php
+
+$i++; //Make sure you add ++
+/* Authentication type */
+$cfg['Servers'][$i]['host'] = 'euk25.eukhosting.net'; //provide hostname and port if other than default
+$cfg['Servers'][$i]['user'] = 'username';   //user name for your remote server
+$cfg['Servers'][$i]['password'] = 'password';  	// password
+$cfg['Servers'][$i]['auth_type'] = 'config';    // keep it as config
+$cfg['Servers'][$i]['connect_type'] = 'tcp';    // keep it as config
+$cfg['Servers'][$i]['only_db'] = 'mydb_euk1'; 	// Database name
+
+
