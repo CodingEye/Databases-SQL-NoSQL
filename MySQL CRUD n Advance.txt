@@ -1,6 +1,3 @@
-Here’s a Markdown file formatted for GitHub that includes basic and advanced MySQL examples. You can copy and paste this into a `.md` file for your GitHub repository.
-
-```markdown
 # MySQL Examples
 
 This document provides examples of basic CRUD operations and advanced queries in MySQL.
