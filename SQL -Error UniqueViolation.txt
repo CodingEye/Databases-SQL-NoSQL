@@ -1,0 +1,34 @@
+ERROR - UniqueViolation
+
+The error you're seeing is a `UniqueViolation`, which indicates that you're trying to insert a row with a primary key value (`store_id`) that already exists. This could be due to the `SERIAL` type generating duplicate values after you made changes or deleted rows.
+
+To fix this, you can reset the sequence that generates the `SERIAL` values to ensure it continues from the correct number.
+
+Here’s how to reset the sequence for your `tbl_stores` table in PostgreSQL:
+
+### Step 1: Identify the Sequence
+PostgreSQL automatically creates a sequence for a `SERIAL` column. The sequence name is usually in the format `tbl_stores_store_id_seq`. To check the sequence name, you can run:
+
+```sql
+SELECT pg_get_serial_sequence('tbl_stores', 'store_id');
+```
+
+This will return the correct sequence name if it's different.
+
+### Step 2: Reset the Sequence
+Once you have the correct sequence name, you can reset it to continue from the highest `store_id` already in the table.
+
+```sql
+SELECT MAX(store_id) FROM tbl_stores;
+```
+
+Let’s assume the highest `store_id` returned is `100`. Now, you reset the sequence to start from the next value (`101`):
+
+```sql
+ALTER SEQUENCE tbl_stores_store_id_seq RESTART WITH 101;
+```
+
+This command will set the sequence to start from `101`, or any number that is higher than the current maximum `store_id`.
+
+### Step 3: Insert New Records
+Now, when you insert new records into `tbl_stores`, the `store_id` should auto-increment correctly without causing a `UniqueViolation`.
